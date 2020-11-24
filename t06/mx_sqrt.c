@@ -1,24 +1,24 @@
+#include <stdio.h> 
+
 int mx_sqrt(int x) {
-    int temp, sqrt;
-    sqrt = x / 2;
-    temp = 0;
-    if(x < 0) {
-        x *= -1;
+	int rslt = x;
+	int div = x;
+
+	for (; x > 0;) {
+        div = (x / div + div) / 2;
+        if (rslt > div)
+            rslt = div;
+        else if (rslt * rslt != x)
+            return 0;
+        else
+            return rslt;
     }
-    while(sqrt != temp){
-        temp = sqrt;
-        sqrt = ( x / temp + temp) / 2;
-    }
-    if(sqrt * sqrt != x) {
-        return 0;
-    }
-    else {
-        return sqrt;
-    }
-     
+    return 0;
 }
 
-// #include<stdio.h>
-// int main () {
-//     printf("%d", mx_sqrt(1999878400));
-// }
+//  int main(void) {
+//  	int j = 0;
+//  	for(j = 0; j <= 49; j++)
+//  		printf("%d is %d \n", j, mx_sqrt(j));
+//  	printf("10000000 is %d \n", mx_sqrt(-2147483648));
+//  }
